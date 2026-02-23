@@ -1,0 +1,25 @@
+<h2 class="text-2xl font-bold mt-5">Buscar Gifs</h2>
+<h2 class="text-sm text-gray-500">Buscar gifs por nombre, descripción o tags</h2>
+
+<section class="flex flex-col gap-4">
+  <input
+    type="text"
+    placeholder="Buscar Gifs"
+    class="mt-3 border border-gray-300 rounded-md p-2"
+    (keyup.enter)="onSearch(txtSearch.value)"
+    #txtSearch
+  />
+</section>
+
+<div class="h-screen overflow-y-scroll grid grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+  (scroll)="onScroll($event)"
+  #scrollDiv
+>
+  @for (group of searchService.searchGifGroup(); track $index) {
+    <div class="grid gap-4">
+      @for (gif of group; track gif.id) {
+        <img class="h-full w-full rounded-lg object-cover" [src]="gif.url" [alt]="gif.title">
+      }
+    </div>
+  }
+</div>

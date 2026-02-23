@@ -1,0 +1,36 @@
+<div id="nav" class="w-full px-3 mt-2">
+  @for (item of menuOptions; track item.route) {
+    <div>
+      <a [routerLink]="item.route"
+        routerLinkActive="bg-blue-800 !text-white"
+        class="w-full px-3 inline-flex space-x-3 items-center rounded-lg py-3 mb-1 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-150 border-l-2 border-transparent">
+        <div class="w-7 h-7 flex items-center justify-center rounded-md bg-white/10 text-sm">
+          <i [class]="item.icon"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-semibold leading-5">{{ item.label }}</span>
+          <span class="text-xs text-slate-400 hidden md:block">{{ item.subLabel }}</span>
+        </div>
+      </a>
+    </div>
+  }
+
+  @if (searchService.searchHistoryKeys().length) {
+    <p class="text-xs tracking-widest uppercase text-slate-500 px-3 mt-4 mb-1">Historial</p>
+  }
+
+  @for (key of searchService.searchHistoryKeys(); track key) {
+    <div>
+      <a [routerLink]="['/dashboard/history', key]"
+        routerLinkActive="bg-blue-800 !text-white"
+        class="w-full px-3 inline-flex space-x-3 items-center rounded-lg py-2 mb-1 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-150 border-l-2 border-transparent">
+        <div class="w-7 h-7 flex items-center justify-center rounded-md bg-white/10 text-xs">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-medium leading-5 truncate max-w-36">{{ key }}</span>
+        </div>
+      </a>
+    </div>
+  }
+</div>

@@ -1,0 +1,9 @@
+{
+  "/giphy-api": {
+    "target": "https://api.giphy.com",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/giphy-api": ""
+    }
+  }
+}
